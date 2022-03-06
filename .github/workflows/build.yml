@@ -21,6 +21,16 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
+          
+      - name: Commit
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git status
+          git add .
+          git status
+          git commit -m "[Build]" -a
+          git push origin ${{ github.ref }}
 
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1.1.3
