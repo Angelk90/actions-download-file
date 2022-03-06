@@ -5657,7 +5657,7 @@ async function main() {
             return;
         }
 
-        filename = parseName(filename)
+        filename = parseName(filename);
         if (typeof filename === "object" && filename.length > 0 && urls.length !== filename.length) {
             core.setFailed("The number of urls does not match the number of filenames.")
             return;
@@ -5665,7 +5665,7 @@ async function main() {
 
         urls.map((url, key) => console.log(`${key}) URL found: ${url}`));
         try {
-            fs.mkdirSync(target, { recursive: true })
+            fs.mkdirSync(target, { recursive: true });
         } catch (e) {
             core.setFailed(`Failed to create target directory ${target}: ${e}`);
             return;
