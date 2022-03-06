@@ -1,16 +1,16 @@
-on:
-  push:
-    branches:
-      - testing
-
 name: Testing
+
+on:
+  repository_dispatch:
+
 jobs:
   test_the_action:
-    if: "contains(github.event.head_commit.message, '[Build]')"
+    if: github.event.action == 'to-download'
     name: Test the action
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+
       - uses: angelk90/actions-download-file@master
         id: downloadfile
         name: Download a file
@@ -21,7 +21,7 @@ jobs:
       - name: Console
         run: echo "$GITHUB_CONTEXT"
         env:
-         GITHUB_CONTEXT: ${{ toJson(github) }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
 
       - name: Display the file
         run: head -n8 public/actions-download-file

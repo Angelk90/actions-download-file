@@ -70,9 +70,9 @@ async function main() {
             return;
         }
 
-        urls.map((url, key) => console.log(`${key}) URL found: ${url}`));
+        urls.map((url, key) => console.log(`${key}) URL found: ${url}`))
         try {
-            fs.mkdirSync(target, { recursive: true });
+            fs.mkdirSync(target, { recursive: true })
         } catch (e) {
             core.setFailed(`Failed to create target directory ${target}: ${e}`);
             return;
